@@ -1,4 +1,5 @@
-import { RoomShowcase } from "@/components/habitaciones/RoomShowcase";
+import { RoomsBenefits } from "@/components/habitaciones/RoomsBenefits";
+import { RoomsGrid } from "@/components/habitaciones/RoomsGrid";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 
@@ -7,8 +8,9 @@ export default function HabitacionesPage() {
     <>
       <Navbar />
 
-      <main className="bg-black pt-24">
-        <RoomShowcase />
+      <main>
+        <RoomsGrid />
+        <RoomsBenefits />
       </main>
 
       <Footer />
