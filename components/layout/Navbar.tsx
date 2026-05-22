@@ -8,8 +8,8 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { label: "Inicio", href: "/" },
   { label: "Habitaciones", href: "/habitaciones" },
-  { label: "Restaurante", href: "/#restaurante" },
-  { label: "Eventos", href: "/#eventos" },
+  { label: "Restaurante", href: "/restaurante" },
+  { label: "Eventos", href: "/eventos" },
   { label: "Galería", href: "/#galeria" },
 ];
 
@@ -67,13 +67,7 @@ export function Navbar() {
         ready ? "transition-all duration-500" : "transition-none"
       } ${checkedInitialScroll ? "opacity-100" : "opacity-0"} ${
         hidden ? "-translate-y-full" : "translate-y-0"
-      } ${
-        isHome
-          ? scrolled
-            ? "bg-black/80 backdrop-blur-xl"
-            : "bg-transparent"
-          : "bg-black/90 backdrop-blur-xl"
-      }`}
+      } ${scrolled ? "bg-black/80 backdrop-blur-xl" : "bg-transparent"}`}
     >
       <div className="mx-auto max-w-[1500px] px-5 md:px-10">
         <div className="relative flex h-20 items-center justify-between border-b border-white/15 md:h-20">

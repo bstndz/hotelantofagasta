@@ -145,7 +145,7 @@ const rooms = [
       "La habitación más exclusiva del hotel, pensada para una estadía sofisticada e inolvidable.",
     bed: "Cama King",
     size: "70 m²",
-    capacity: "2 personas",
+    capacity: "4 personas",
     services: [
       "Vista al Pacífico",
       "Sala privada",
@@ -170,8 +170,12 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
   };
 
   return (
-    <article className="group bg-white shadow-[0_24px_80px_rgba(0,0,0,0.06)]">
-      <div className="relative h-[250px] overflow-hidden bg-black">
+    <article className="group flex h-[520px] flex-col bg-white shadow-[0_24px_80px_rgba(0,0,0,0.06)]">
+      <div
+        className={`relative overflow-hidden bg-black transition-all duration-500 ease-in-out ${
+          isOpen ? "h-0 opacity-0" : "h-[250px] opacity-100"
+        }`}
+      >
         {room.images.map((image, index) => (
           <div
             key={`${image}-${index}`}
@@ -188,7 +192,6 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
           type="button"
           onClick={prevImage}
           className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-0 shadow-lg transition hover:bg-black hover:text-white group-hover:opacity-100"
-          aria-label={`Imagen anterior de ${room.name}`}
         >
           <ArrowLeft size={18} />
         </button>
@@ -197,7 +200,6 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
           type="button"
           onClick={nextImage}
           className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-0 shadow-lg transition hover:bg-black hover:text-white group-hover:opacity-100"
-          aria-label={`Siguiente imagen de ${room.name}`}
         >
           <ArrowRight size={18} />
         </button>
@@ -209,7 +211,6 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
               type="button"
               onClick={() => setActiveImage(index)}
               className="h-4 flex-1 rounded-full py-1"
-              aria-label={`Ver imagen ${index + 1} de ${room.name}`}
             >
               <span
                 className={`block h-[3px] rounded-full transition ${
@@ -221,7 +222,7 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="flex h-full flex-1 flex-col p-6">
         <div className="mb-5 flex items-center justify-between gap-4">
           <p className="text-[11px] uppercase tracking-[0.35em] text-black/35">
             Habitación
@@ -230,7 +231,11 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
           <div className="h-px flex-1 bg-black/10" />
         </div>
 
-        <h3 className="mb-4 text-[1.9rem] font-light leading-[1.05] tracking-[-0.04em] text-black">
+        <h3
+          className={`font-light leading-[1.05] tracking-[-0.04em] text-black transition-all duration-500 ${
+            isOpen ? "mb-5 text-[1.75rem]" : "mb-4 text-[1.9rem]"
+          }`}
+        >
           {room.name}
         </h3>
 
@@ -255,10 +260,10 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
 
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            isOpen ? "max-h-[220px] opacity-100" : "max-h-0 opacity-0"
+            isOpen ? "mb-5 max-h-[260px] opacity-100" : "mb-0 max-h-0 opacity-0"
           }`}
         >
-          <div className="mb-4 grid gap-x-5 gap-y-2 border-b border-black/10 pb-6 sm:grid-cols-2">
+          <div className="mb-5 grid gap-x-5 gap-y-3 border-b border-black/10 pb-6 sm:grid-cols-2">
             {room.services.map((service) => (
               <div
                 key={service}
@@ -271,7 +276,7 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 pt-1">
+        <div className="mt-auto grid grid-cols-2 gap-4">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -297,27 +302,21 @@ function RoomCard({ room }: { room: (typeof rooms)[number] }) {
 
 export function RoomsGrid() {
   return (
-    <section className="bg-[#f2f2ee] px-6 pb-28 pt-52 text-black">
+    <section className="bg-[#f2f2ee] px-6 pb-28 text-black">
       <div className="mx-auto max-w-[1240px]">
-        <div className="mb-16 grid gap-10 lg:grid-cols-[0.75fr_1fr] lg:items-end">
-          <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.45em] text-black/40">
-              Elige tu habitación
+        <div className="flex items-center justify-center border-b border-black/10 py-10 text-center">
+          <div className="max-w-4xl">
+            <p className="mb-6 text-[11px] uppercase tracking-[0.45em] text-black/35">
+              Hotel Antofagasta
             </p>
 
-            <h2 className="text-4xl font-light leading-tight tracking-[-0.04em] md:text-6xl">
-              Espacios para cada forma de viajar
+            <h2 className="text-4xl font-light leading-[1] tracking-[-0.05em] md:text-6xl">
+              Conoce nuestras habitaciones
             </h2>
           </div>
-
-          <p className="max-w-2xl text-lg leading-8 text-black/60">
-            Ya sea por descanso, trabajo o una escapada frente al mar, nuestras
-            habitaciones combinan comodidad, diseño y una ubicación
-            privilegiada.
-          </p>
         </div>
 
-        <div className="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid items-start gap-8 pt-16 md:grid-cols-2 xl:grid-cols-3">
           {rooms.map((room) => (
             <RoomCard key={room.name} room={room} />
           ))}

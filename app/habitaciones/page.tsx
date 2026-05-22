@@ -1,3 +1,4 @@
+import { RoomsHero } from "@/components/habitaciones/RoomsHero";
 import { RoomsBenefits } from "@/components/habitaciones/RoomsBenefits";
 import { RoomsGrid } from "@/components/habitaciones/RoomsGrid";
 import { Footer } from "@/components/layout/Footer";
@@ -9,6 +10,7 @@ export default function HabitacionesPage() {
       <Navbar />
 
       <main>
+        <RoomsHero />
         <RoomsGrid />
         <RoomsBenefits />
       </main>
