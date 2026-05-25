@@ -1,8 +1,6 @@
-import { ChevronDown } from "lucide-react";
-
 export function RestaurantHero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white">
+    <section className="relative flex h-[52vh] min-h-[420px] items-end overflow-hidden bg-black text-white sm:h-[58vh] sm:min-h-[520px] lg:h-[55vh] lg:min-h-[480px]">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -10,22 +8,22 @@ export function RestaurantHero() {
         }}
       />
 
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/25 to-black/70" />
 
-      <div className="relative z-10 px-6 text-center">
-        <h1 className="font-serif text-6xl font-light leading-none tracking-[-0.04em] text-white md:text-8xl lg:text-9xl">
-          Restaurante
-        </h1>
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-10 pt-32 sm:pb-14 sm:pt-40 lg:pt-36">
+        <div className="max-w-3xl">
+          <p className="mb-4 text-[10px] uppercase tracking-[0.32em] text-white/60 sm:text-[11px] sm:tracking-[0.42em]">
+            Sabores · experiencia · Pacífico
+          </p>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-8 text-white/80 md:text-xl">
-          Sabores pensados para acompañar tu experiencia frente al Pacífico.
-        </p>
-      </div>
+          <h1 className="font-serif text-5xl font-light leading-[0.92] tracking-[-0.04em] text-white sm:text-7xl lg:text-8xl">
+            Restaurante
+          </h1>
 
-      <div className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-md">
-          <ChevronDown size={24} strokeWidth={1.5} />
+          <p className="mt-4 max-w-[340px] text-base font-light leading-7 text-white/75 sm:max-w-2xl sm:text-lg sm:leading-8">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
         </div>
       </div>
     </section>

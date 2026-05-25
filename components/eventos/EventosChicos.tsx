@@ -1,10 +1,11 @@
 "use client";
 
 import {
+  ArrowLeft,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   Maximize2,
+  Theater,
+  Utensils,
   Users,
 } from "lucide-react";
 import { useState } from "react";
@@ -17,11 +18,11 @@ const rooms = [
     cena: "50",
     cocktail: "60",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
   {
@@ -31,11 +32,11 @@ const rooms = [
     cena: "60",
     cocktail: "80",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
   {
@@ -45,11 +46,11 @@ const rooms = [
     cena: "20",
     cocktail: "25",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
   {
@@ -59,25 +60,25 @@ const rooms = [
     cena: "20",
     cocktail: "25",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
   {
     name: "Caliche",
     area: "12 m²",
     auditorio: "12",
-    cena: "-",
+    cena: "—",
     cocktail: "—",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
   {
@@ -87,164 +88,150 @@ const rooms = [
     cena: "—",
     cocktail: "—",
     images: [
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
-      "/hotel/historia3.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
+      "/hotel/columna4.png",
     ],
   },
 ];
 
-function ImageSlider({ images, area }: { images: string[]; area: string }) {
+function EventCard({ room }: { room: (typeof rooms)[number] }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const nextImage = () => {
-    setActiveImage((prev) => (prev + 1) % images.length);
+    setActiveImage((prev) => (prev + 1) % room.images.length);
   };
 
   const prevImage = () => {
-    setActiveImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setActiveImage((prev) => (prev === 0 ? room.images.length - 1 : prev - 1));
   };
 
   return (
-    <div className="group relative h-[360px] overflow-hidden bg-black">
-      {images.map((image, index) => (
-        <div
-          key={`${image}-${index}`}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
-            activeImage === index ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ backgroundImage: `url('${image}')` }}
-        />
-      ))}
+    <article className="group flex h-[480px] flex-col overflow-hidden bg-white shadow-[0_24px_80px_rgba(0,0,0,0.06)] sm:h-[460px]">
+      <div
+        className={`relative overflow-hidden bg-black transition-all duration-500 ease-in-out ${
+          isOpen ? "h-0 opacity-0" : "h-[250px] opacity-100"
+        }`}
+      >
+        {room.images.map((image, index) => (
+          <div
+            key={`${image}-${index}`}
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ${
+              activeImage === index ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url('${image}')` }}
+          />
+        ))}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-      <div className="absolute left-6 top-6 bg-white/90 px-5 py-3 text-black shadow-lg backdrop-blur-md transition-all duration-300 group-hover:-translate-y-3 group-hover:opacity-0">
-        <p className="mb-1 text-[10px] uppercase tracking-[0.28em] text-black/40">
-          Área
-        </p>
+        <button
+          type="button"
+          onClick={prevImage}
+          className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-100 shadow-lg transition hover:bg-black hover:text-white sm:h-10 sm:w-10 lg:opacity-0 lg:group-hover:opacity-100"
+          aria-label="Imagen anterior"
+        >
+          <ArrowLeft size={17} />
+        </button>
 
-        <div className="flex items-center gap-2">
-          <Maximize2 size={14} strokeWidth={1.7} />
-          <span className="text-sm font-light">{area}</span>
+        <button
+          type="button"
+          onClick={nextImage}
+          className="absolute right-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-100 shadow-lg transition hover:bg-black hover:text-white sm:h-10 sm:w-10 lg:opacity-0 lg:group-hover:opacity-100"
+          aria-label="Siguiente imagen"
+        >
+          <ArrowRight size={17} />
+        </button>
+
+        <div className="absolute bottom-7 left-0 right-0 z-20 flex justify-center gap-3 sm:bottom-8 sm:gap-4">
+          {room.images.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActiveImage(index)}
+              className={`h-2 w-2 rounded-full transition sm:h-2.5 sm:w-2.5 ${
+                activeImage === index
+                  ? "scale-125 bg-white ring-2 ring-white/80 ring-offset-3 ring-offset-black/25"
+                  : "bg-white/55 hover:bg-white"
+              }`}
+              aria-label={`Ver imagen ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
-      <button
-        type="button"
-        onClick={prevImage}
-        className="absolute left-4 top-[44%] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-0 transition hover:bg-black hover:text-white group-hover:opacity-100"
-        aria-label="Imagen anterior"
-      >
-        <ChevronLeft size={18} />
-      </button>
+      <div className="flex flex-1 flex-col px-7 pb-8 pt-7 sm:p-6">
+        <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-black/35 sm:text-[11px]">
+            Salón
+          </p>
 
-      <button
-        type="button"
-        onClick={nextImage}
-        className="absolute right-4 top-[44%] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-black opacity-0 transition hover:bg-black hover:text-white group-hover:opacity-100"
-        aria-label="Siguiente imagen"
-      >
-        <ChevronRight size={18} />
-      </button>
-
-      <div className="absolute bottom-18 left-0 right-0 z-20 flex justify-center gap-4">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => setActiveImage(index)}
-            className={`h-3 w-3 rounded-full transition ${
-              activeImage === index
-                ? "scale-125 bg-white ring-2 ring-white/80 ring-offset-4 ring-offset-black/25"
-                : "bg-white/55 hover:bg-white"
-            }`}
-            aria-label={`Ver imagen ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function EventCard({ room }: { room: (typeof rooms)[number] }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <article className="flex h-[540px] animate-[fadeUp_500ms_ease] flex-col overflow-hidden bg-white shadow-[0_24px_80px_rgba(0,0,0,0.06)]">
-      <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? "h-0 opacity-0" : "h-[340px] opacity-100"
-        }`}
-      >
-        <ImageSlider images={room.images} area={room.area} />
-      </div>
-
-      <div className="flex flex-1 flex-col px-10 pb-10 pt-8">
-        <p className="mb-3 text-[11px] uppercase tracking-[0.35em] text-black/35">
-          Salón
-        </p>
+          <div className="h-px flex-1 bg-black/10" />
+        </div>
 
         <h3
-          className={`font-light leading-[1.05] tracking-[-0.05em] text-black transition-all duration-500 ${
-            isOpen ? "mb-6 text-[2.15rem]" : "mb-10 text-[2.45rem]"
+          className={`font-light leading-[1.05] tracking-[-0.04em] text-black transition-all duration-500 ${
+            isOpen
+              ? "mb-4 text-[1.55rem] sm:mb-5 sm:text-[1.75rem]"
+              : "mb-4 text-[1.75rem] sm:text-[1.9rem]"
           }`}
         >
           {room.name}
         </h3>
 
         <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            isOpen ? "mb-6 max-h-[230px] opacity-100" : "mb-0 max-h-0 opacity-0"
+          className={`grid transition-all duration-500 ease-in-out ${
+            isOpen
+              ? "mb-5 grid-rows-[1fr] opacity-100"
+              : "mb-0 grid-rows-[0fr] opacity-0"
           }`}
         >
-          <div className="border-y border-black/10 py-5">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.32em] text-black/35">
-              Tamaño del salón
-            </p>
+          <div className="overflow-hidden">
+            <div className="border-y border-black/10 py-5">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.32em] text-black/35 sm:text-[11px]">
+                Detalles del salón
+              </p>
 
-            <div className="mb-6 flex items-center gap-3 text-sm text-black/60">
-              <Maximize2 size={15} className="text-black/45" />
-              Área: {room.area}
-            </div>
+              <div className="grid gap-4 text-[13px] text-black/60">
+                <div className="flex items-center gap-3">
+                  <Maximize2 size={15} />
+                  <span>Área: {room.area}</span>
+                </div>
 
-            <p className="mb-4 text-[11px] uppercase tracking-[0.32em] text-black/35">
-              Capacidad
-            </p>
+                <div className="flex items-center gap-3">
+                  <Theater size={15} />
+                  <span>Auditorio: {room.auditorio} personas</span>
+                </div>
 
-            <div className="grid gap-3 text-sm text-black/60">
-              <div className="flex items-center gap-3">
-                <Users size={15} className="text-black/45" />
-                Auditorio: {room.auditorio} personas
-              </div>
+                <div className="flex items-center gap-3">
+                  <Utensils size={15} />
+                  <span>Cena: {room.cena} personas</span>
+                </div>
 
-              <div className="flex items-center gap-3">
-                <Users size={15} className="text-black/45" />
-                Cena: {room.cena} personas
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Users size={15} className="text-black/45" />
-                Cocktail: {room.cocktail} personas
+                <div className="flex items-center gap-3">
+                  <Users size={15} />
+                  <span>Cocktail: {room.cocktail} personas</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-auto grid grid-cols-2 gap-4">
+        <div className="mt-auto grid grid-cols-2 gap-3 pt-5 sm:gap-4">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-center border border-black/15 px-5 py-4 text-xs font-semibold uppercase tracking-[0.26em] text-black transition hover:bg-black hover:text-white"
+            className="flex min-h-[56px] items-center justify-center border border-black/15 bg-transparent px-3 py-4 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-black transition hover:bg-black hover:text-white sm:text-xs sm:tracking-[0.26em]"
           >
             {isOpen ? "Ver menos" : "Ver más"}
           </button>
 
           <a
             href="#"
-            className="flex items-center justify-center bg-black px-5 py-4 text-center text-xs font-semibold uppercase tracking-[0.26em] text-white transition hover:bg-[#afafac] hover:text-black"
+            className="flex min-h-[56px] items-center justify-center bg-black px-3 py-4 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#afafac] hover:text-black sm:text-xs sm:tracking-[0.26em]"
           >
             Contactar
           </a>
@@ -260,30 +247,33 @@ export function EventosChicos() {
   const visibleRooms = showAll ? rooms : rooms.slice(0, 3);
 
   return (
-    <section id="eventos-chicos" className="bg-[#f2f2ee] px-6 pb-32 text-black">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-16">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.45em] text-black/35">
-            Menos de 100 m²
+    <section
+      id="eventos-chicos"
+      className="bg-[#f2f2ee] px-6 pb-24 text-black sm:pb-32"
+    >
+      <div className="mx-auto max-w-[1240px]">
+        <div className="mb-10 border-b border-black/10 py-10 text-center sm:mb-12 sm:py-12">
+          <p className="mb-5 text-[10px] uppercase tracking-[0.4em] text-black/35 sm:mb-6 sm:text-[11px] sm:tracking-[0.45em]">
+            Hotel Antofagasta
           </p>
 
-          <h2 className="text-5xl font-light tracking-[-0.05em] md:text-6xl">
+          <h2 className="text-4xl font-light leading-[1] tracking-[-0.05em] sm:text-5xl md:text-6xl">
             Salones privados
           </h2>
         </div>
 
-        <div className="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid items-start gap-8 pt-2 md:grid-cols-2 xl:grid-cols-3">
           {visibleRooms.map((room) => (
             <EventCard key={room.name} room={room} />
           ))}
         </div>
 
         {rooms.length > 3 && (
-          <div className="mt-14 flex justify-center">
+          <div className="mt-12 flex justify-center sm:mt-14">
             <button
               type="button"
               onClick={() => setShowAll(!showAll)}
-              className="border border-black/15 px-10 py-4 text-xs font-semibold uppercase tracking-[0.26em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+              className="border border-black/15 px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black transition-all duration-300 hover:bg-black hover:text-white sm:px-10 sm:text-xs sm:tracking-[0.26em]"
             >
               {showAll ? "Mostrar menos" : "Mostrar más salones"}
             </button>

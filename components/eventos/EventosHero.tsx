@@ -22,8 +22,7 @@ export function EventsHero() {
           </h1>
 
           <p className="mt-4 max-w-[320px] text-base font-light leading-7 text-white/75 sm:max-w-2xl sm:text-lg sm:leading-8">
-            Espacios versátiles para celebrar, reunir y compartir frente al
-            Pacífico.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
       </div>
