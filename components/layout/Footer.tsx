@@ -56,7 +56,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-14 max-w-7xl border-t border-white/10 pt-8 text-center text-xs uppercase tracking-[0.25em] text-white/40">
-        © 2026 Hotel Antofagasta
+        Bastian Diaz © 2026 Hotel Antofagasta
       </div>
     </footer>
   );

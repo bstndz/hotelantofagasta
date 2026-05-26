@@ -242,7 +242,7 @@ export function EventosGrandes() {
   return (
     <section
       id="eventos-grandes"
-      className="bg-[#f2f2ee] px-6 pb-20 text-black sm:pb-28"
+      className="bg-[#f2f2ee] px-6 pb-10 text-black sm:pb-10"
     >
       <div className="mx-auto max-w-[1240px]">
         <div className="mb-10 border-b border-black/10 py-10 text-center sm:mb-12 sm:py-12">

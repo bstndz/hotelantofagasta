@@ -3,21 +3,21 @@ import Link from "next/link";
 const panels = [
   {
     title: "Habitaciones",
-    subtitle: "Descanso frente al Pacífico",
+    subtitle: "Descanso",
     href: "/habitaciones",
     image: "/hotel/columna1.png",
+  },
+  {
+    title: "Eventos",
+    subtitle: "Encuentros",
+    href: "/eventos",
+    image: "/hotel/columna3.png",
   },
   {
     title: "Restaurante",
     subtitle: "Mar Eterno",
     href: "/restaurante",
     image: "/hotel/columna2.png",
-  },
-  {
-    title: "Eventos",
-    subtitle: "Encuentros memorables",
-    href: "/eventos",
-    image: "/hotel/columna3.png",
   },
 ];
 
@@ -39,7 +39,7 @@ export function ExperiencePanels() {
           <Link
             key={panel.title}
             href={panel.href}
-            className="group relative flex h-[500px] items-center justify-center overflow-hidden border-b border-black/10 px-8 py-20 text-center md:border-b-0 md:border-r last:md:border-r-0"
+            className="group relative flex h-[450px] items-center justify-center overflow-hidden border-b border-black/10 px-8 py-20 text-center md:border-b-0 md:border-r last:md:border-r-0"
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-100 transition duration-700 group-hover:scale-110"
